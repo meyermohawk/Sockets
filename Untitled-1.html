@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+  <style>
+    button {color:red;
+            width: 50%;
+            padding: 20px 20px;
+            background-color: rgb(226, 240, 30);
+            border-radius: 24px;}
+    p {background:rgb(33, 243, 103);}
+    span {background:cyan;}
+  </style>
+  </head>
+
+<body>
+<h1>Anna's Page</h1>
+<span id="numberlist">Enter numbers:</span>
+<input type="text" id="name" name="name" autocomplete="off" required
+       minlength="5" maxlength="8" size="20" onchange="myFunction()">
+<p id="output"></p>
+<p id="list_output"></p>
+<button id="enter_button" type="button" onclick="buttonFunction()">Smallest</button>
+<p id="small_num"></p>
+
+
+<script>
+
+myList = [];
+
+function myFunction() {
+  var inputValue = document.getElementById("name").value;
+  document.getElementById("output").innerHTML = "You entered " + inputValue + ".";
+  myList.unshift(inputValue);
+  for (var i = 0; i < myList.length; i++) {
+  	if (myList[i] > myList[i+1]) {
+      var tmp = myList[i];
+		  myList[i] = myList[i+1];
+		  myList[i+1] = tmp;}
+  }
+  var listOutput = myList[0];
+  for (var i = 1; i < myList.length; i++) { 
+    listOutput = listOutput + ", " + myList[i]
+  }
+  document.getElementById("list_output").innerHTML = "Your list includes: " + listOutput;
+  document.getElementById("name").value = ""
+}
+
+function buttonFunction() {
+  var smallest = myList[0];
+  for (var i = 0; i < myList.length; i++) {
+  	if (myList[i] < smallest) {
+      smallest = myList[i];
+      }
+     }
+     document.getElementById("small_num").innerHTML = "The least number in your list is " + smallest + ".";
+    }
+      
+</script>
+
+</body>
+</html>
+
